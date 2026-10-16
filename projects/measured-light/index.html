@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Measured Light — Architectural Photography Studio</title>
+  <meta name="description" content="Independent architectural photography studio dedicated to measuring structural mass, spatial voids, and raking solar incidence across the built environment.">
+
+  <!-- Typography: Editorial Atelier Pairing (Google Fonts with Swap Display) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Design Tokens & Stylesheet -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Accessible Skip Navigation -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Masthead & Global Navigation -->
+  <header class="masthead" role="banner">
+    <div class="container masthead__inner">
+      <div class="masthead__brand">
+        <a href="#main-content" class="masthead__title" aria-label="The Measured Light Home">
+          The Measured Light
+        </a>
+        <span class="masthead__tagline">[STUDIO NAME // ARCHITECTURAL PHOTOGRAPHY]</span>
+      </div>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="masthead__nav" aria-label="Primary Navigation">
+        <ul class="masthead__links">
+          <li><a href="#featured-study" class="masthead__link">Selected Studies</a></li>
+          <li><a href="#monographs" class="masthead__link">Monograph Series</a></li>
+          <li><a href="#methodology" class="masthead__link">Methodology</a></li>
+          <li><a href="#inquire" class="masthead__link">Inquire</a></li>
+        </ul>
+
+        <!-- Commission Status Pill -->
+        <div class="masthead__status" aria-label="Studio Commission Status">
+          <span class="status-indicator-dot" aria-hidden="true"></span>
+          <span>Open for Commissions: Q1/Q2 [Provisional]</span>
+        </div>
+      </nav>
+
+      <!-- Mobile Navigation Hamburger Trigger -->
+      <button 
+        type="button" 
+        id="drawer-toggle" 
+        class="masthead__toggle" 
+        aria-expanded="false" 
+        aria-controls="mobile-drawer"
+        aria-label="Open navigation menu">
+        <span class="masthead__toggle-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <aside id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation" aria-hidden="true">
+    <div class="mobile-drawer__panel">
+      <ul class="mobile-drawer__links">
+        <li><a href="#featured-study" class="mobile-drawer__link"><span>Selected Studies</span> <span>→</span></a></li>
+        <li><a href="#monographs" class="mobile-drawer__link"><span>Monograph Series</span> <span>→</span></a></li>
+        <li><a href="#methodology" class="mobile-drawer__link"><span>Methodology</span> <span>→</span></a></li>
+        <li><a href="#inquire" class="mobile-drawer__link"><span>Inquire</span> <span>→</span></a></li>
+      </ul>
+      <div class="mobile-drawer__footer">
+        <div class="plate-badge plate-badge--accent">
+          <span>● Open for Commissions: Q1/Q2 [Provisional]</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Landmark -->
+  <main id="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        
+        <div class="hero__header">
+          <div>
+            <span class="plate-badge">[FIELD STUDY // FORM &amp; LIGHT]</span>
+          </div>
+
+          <h1 id="hero-title" class="hero__title">
+            Light is the <em>first</em> material of architecture.
+          </h1>
+
+          <p class="hero__subheadline">
+            An independent photographic practice dedicated to measuring structural mass, spatial voids, and raking solar incidence across the built environment.
+          </p>
+
+          <div class="hero__actions">
+            <a href="#inquire" class="btn btn--primary">[Initiate Commission]</a>
+            <a href="#featured-study" class="btn btn--ghost">[Explore Spatial Studies ↓]</a>
+          </div>
+        </div>
+
+        <!-- Large Hero Photographic Placeholder Plate -->
+        <div class="plate-frame plate-frame--hero" role="region" aria-label="Hero Architectural Plate Placeholder">
+          <div class="placeholder-grid">
+            <div class="placeholder-grid__header">
+              <span class="plate-badge">PLATE 00 // HERO EXHIBIT</span>
+              <span class="plate-badge">16:9 DRAFTING FRAME</span>
+            </div>
+
+            <div class="placeholder-grid__center">
+              <h2 class="placeholder-grid__title">
+                [HERO ARCHITECTURAL STUDY — AWAITING HIGH-RES CLIENT MASTER]
+              </h2>
+              <p class="placeholder-grid__caption">
+                [Low morning solar incidence raking textured board-marked concrete colonnade]
+              </p>
+            </div>
+
+            <div class="placeholder-grid__footer">
+              <span>LAT: 47.3769° N // LON: 8.5417° E [PROVISIONAL]</span>
+              <span>NATURAL LIGHT ANGLE: 18° AZIMUTH</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Featured Project Entry Point (Asymmetric 60/40 Study Slice) -->
+    <section id="featured-study" class="study-section" aria-labelledby="study-heading">
+      <div class="container">
+
+        <div class="section-eyebrow">
+          <div>
+            <span class="plate-badge plate-badge--accent">[SELECTED STUDY ENTRY POINT]</span>
+          </div>
+          <span class="plate-badge">PLATE 01 / 12</span>
+        </div>
+
+        <!-- Asymmetric 60/40 Split Grid -->
+        <article class="asymmetric-study-split">
+
+          <!-- Left Column (60%): Labeled Photographic Placeholder Plate -->
+          <div class="plate-frame plate-frame--study" role="region" aria-label="Plate 01 Photographic Placeholder">
+            <div class="placeholder-grid">
+              <div class="placeholder-grid__header">
+                <span class="plate-badge">PLATE NO. 01</span>
+                <span class="plate-badge">4:3 OPTICAL APERTURE</span>
+              </div>
+
+              <div class="placeholder-grid__center">
+                <h3 class="placeholder-grid__title">
+                  [PLATE NO. 01 — CANTILEVERED ATRIUM STUDY]
+                </h3>
+                <p class="placeholder-grid__caption">
+                  [Client Architectural Photograph 01 — High-Resolution Asset Pending]
+                </p>
+              </div>
+
+              <div class="placeholder-grid__footer">
+                <span>FORMAT: 4×5 LARGE FORMAT MONOGRAPH PLATE</span>
+                <span>ASPECT: 4:3 RATIO</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column (40%): Curatorial Details & Technical Parameters -->
+          <div class="study-details">
+            <div class="study-details__header">
+              <span class="plate-badge">[MONOGRAPH ARCHIVAL SERIES // 2026]</span>
+              <h2 id="study-heading" class="study-details__title">
+                [Structure Name / Architect Name Needed]
+              </h2>
+              <p class="study-details__location">
+                [Location, Construction Phase &amp; Solar Orientation Needed]
+              </p>
+            </div>
+
+            <p class="study-details__narrative">
+              A curatorial spatial study examining the morning transition of light across untreated board-marked concrete. The cantilevered structural canopy generates a 40-meter shadow void, revealing tectonic cast joints through extreme optical contrast.
+            </p>
+
+            <!-- Technical Camera Metadata Card -->
+            <div class="metadata-card" aria-label="Technical Plate Metadata">
+              <span class="metadata-card__title">Optical &amp; Environmental Parameters</span>
+
+              <div class="metadata-scroll-container">
+                <table class="metadata-table">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Camera Optics</th>
+                      <td>[4×5 Technical View Camera // 24mm Tilt-Shift]</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Exposure Spec</th>
+                      <td>[f/11 @ 1/4s // ISO 64 // Analog Monograph Film]</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Solar Condition</th>
+                      <td>[Winter Equinox // 18° Incident Angle]</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Primary Material</th>
+                      <td>[Poured-in-Place Structural Concrete &amp; Low-Iron Glass]</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <a href="#study-detail" class="study-action-link">
+                <span>[View Full Monograph Study &amp; Drawings]</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer Baseline -->
+  <footer class="footer-baseline" role="contentinfo">
+    <div class="container footer-baseline__inner">
+      <div>
+        <span>The Measured Light © [Provisional Year] — Architectural Photography</span>
+      </div>
+      <div>
+        <span>[AURA Engineering Prototype — First Slice Specification]</span>
+      </div>
+      <div>
+        <a href="#main-content">Back to Top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Sticky Thumb-Zone Action Bar (Visible < 768px) -->
+  <div class="mobile-action-bar" aria-label="Quick Mobile Actions">
+    <a href="#inquire" class="btn btn--primary">[Initiate Commission]</a>
+  </div>
+
+  <!-- Client-Side Controller -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

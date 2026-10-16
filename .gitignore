@@ -55,6 +55,7 @@ screenshots/
 .turbo/
 .eslintcache
 .stylelintcache
+.chrome*
 
 # Operating System Metadata
 .DS_Store
