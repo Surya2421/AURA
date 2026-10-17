@@ -63,11 +63,11 @@ AURA partitions website engineering into six specialized roles. Whether these ro
    * Key design decisions highlighted with rationale.
    * Explicit prompt requesting approval or targeted revisions.
 5. **Execution Halted**: Agent stops tool calls and waits for human input. Silence is never interpreted as approval.
-6. **Continuation / Revision**: ONLY proceed to Stage 6 upon receiving explicit confirmation (e.g., "Approved", "Looks great, proceed", "Go ahead"). If revisions are requested:
-   - Route to Stage 2 for layout archetype / IA revisions.
-   - Route to Stage 3 for typography / color token revisions.
-   - Route to Stage 4 for code-level or component bug revisions.
-   - Log the revision as `REJECTED` or `OVERRIDDEN` in `references/DESIGN-DECISION-LOG.md` before regenerating the slice.
+6. **Continuation / Conditional Progression / Revision**:
+   - **Full Approval**: Proceed to Stage 6 upon explicit confirmation (e.g., "Approved", "Proceed").
+   - **Conditional Progression**: When the user authorizes moving to Stage 6 as a working baseline while noting reservations or open issues, the agent MUST log the conditional authorization and active punchlist in `references/DESIGN-DECISION-LOG.md`, carry the items forward into Stage 8/9, and NEVER treat conditional acceptance as final approval. Progress is not blocked when explicit progression authorization is granted.
+   - **Revisions Requested**: If revisions are required before progression, conduct Revision Synthesis (what failed, why, root cause, what changed, verifying evidence), route back to Stage 2, 3, or 4 based on scope, and log the revision in `references/DESIGN-DECISION-LOG.md`.
+   - **Pre-Flight Decision Check**: A stage cannot advance if required decision records or required human approvals from earlier stages are missing. Routine implementation details do not require individual entries.
 
 ---
 

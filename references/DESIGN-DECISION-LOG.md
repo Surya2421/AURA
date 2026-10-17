@@ -18,6 +18,11 @@ Every decision must be labeled with one of the four canonical categories:
 | **`[INFERENCE]`** | Derived via domain/engineering logic to fulfill a functional goal. | Documented rationale required; audited during quality review. |
 | **`[PROPOSAL]`** | Creative or architectural enhancement suggested by the agent. | Requires explicit human approval before committing to production. |
 
+### Governance & Logging Scope Rules
+1. **Meaningful Decisions Only**: Record high-impact choices: layout archetypes, color system derivations, asset-absent holding strategies, brand overrides, changed assumptions, user approvals, stage transitions, and major revision syntheses. Routine implementation details (e.g., standard CSS utility class, minor 2px padding tweak) do NOT require separate entries.
+2. **Pre-Flight Gating**: A stage cannot advance if required decision records or required human approvals from earlier stages are missing.
+3. **No Fabrication or Backdating**: Never fabricate historical decisions or backdate approvals. If past project decisions must be documented post-hoc for audit continuity, they MUST be explicitly marked with `[RETROSPECTIVE RECORD]`.
+
 ---
 
 ## 2. Standard Decision Entry Template
@@ -176,4 +181,129 @@ Contrast ratio measured at 6.8:1 for accent on black, and 12.1:1 for white body 
 
 ## 4. Active Project Decision Log (Append New Entries Below)
 
-*(New project entries will be recorded here sequentially as DEC-006, DEC-007, etc.)*
+### DEC-006: [RETROSPECTIVE RECORD] Selection of Architectural Monograph Archetype & Warm Sandstone Palette for "The Measured Light"
+
+- **Timestamp**: 2026-10-16 18:30 UTC
+- **Stage**: Stage 2 & 3 (Vision Architecture & Signature Art Direction)
+- **Category**: `[EXPLICIT_REQUIREMENT]`
+- **Scope / Target**: Architecture Concept & Global Design Tokens (`projects/measured-light/css/tokens.css`)
+- **Approval Status**: `APPROVED` (User authorized first-slice specification brief)
+
+#### 1. Context & Problem Statement
+The studio requested a digital presence for an independent architectural photography practice that feels spatial, editorial, and tactile—like a printed monograph on heavy uncoated stock rather than a generic digital portfolio grid. No images or brand guidelines were provided.
+
+#### 2. Decision Taken
+- Adopted the *Asymmetric Editorial Spread* archetype.
+- Palette: Warm Sandstone Parchment (`#F7F6F2`), Deep Carbon Ink (`#1C1917`), Pale Limestone (`#EFECE6`), Burnished Terracotta (`#C2410C`).
+- Typography: *Fraunces* (Display serif), *Plus Jakarta Sans* (Interface sans), *JetBrains Mono* (Technical plate metadata).
+
+#### 3. Alternatives Considered & Rejected
+- **Monochrome Dark Mode**: Rejected; warm daylit stone better conveys natural daylight measurement.
+- **Symmetric 3-Card Portfolio Grid**: Rejected; violates anti-cliché doctrine.
+
+#### 4. Verification Method & Evidence
+Recorded in `references/MEASURED-LIGHT-FIRST-SLICE-BRIEF.md`. User confirmed concept.
+
+---
+
+### DEC-007: [RETROSPECTIVE RECORD] First-Slice Implementation & Initial Placeholder Strategy
+
+- **Timestamp**: 2026-10-16 19:25 UTC
+- **Stage**: Stage 4 (First Slice Implementation)
+- **Category**: `[INFERENCE]`
+- **Scope / Target**: First Slice Codebase (`index.html`, `styles.css`)
+- **Approval Status**: `REJECTED` (Required Stage 5 revision pass)
+
+#### 1. Context & Problem Statement
+Because authentic architectural photography was unavailable, the first slice needed a holding strategy for the hero and featured study slice.
+
+#### 2. Decision Taken
+Constructed drafting plates with corner crosshairs, ratio badges, and populated technical camera metadata tables.
+
+#### 3. Alternatives Considered & Rejected
+- **Generating AI Photos**: Strictly prohibited by AURA Core Principle 3 (Zero Fabrication).
+
+#### 4. Verification Method & Evidence
+Implemented in commit `39eb189`. Visual inspection in Stage 5 revealed excessive technical jargon, fabricated camera specifications, and an unfinished wireframe appearance, triggering a revision pass.
+
+---
+
+### DEC-008: [RETROSPECTIVE RECORD] Stage 5 Revision Pass: Removal of Techno-Chaff, Elimination of Invented Specs, and Mobile Refinements
+
+- **Timestamp**: 2026-10-17 13:05 UTC
+- **Stage**: Stage 5 (Revision Pass)
+- **Category**: `[EXPLICIT_REQUIREMENT]`
+- **Scope / Target**: Hero drafting plate, metadata tables, mobile typography, and action pill
+- **Approval Status**: `APPROVED` (Incorporated into commit `c6f4b0a`)
+
+#### 1. Context & Problem Statement
+Human review of the first slice identified three critical defects:
+1. Redundant drafting lines, corner marks, and aspect-ratio badges created visual clutter (techno-chaff).
+2. Fabricated camera metadata (24mm tilt-shift, f/11, ISO 64, coordinates) and fictional architectural prose violated content authenticity rules.
+3. Mobile headline font size was over-scaled, causing awkward line wrapping.
+
+#### 2. Decision Taken
+1. Stripped corner ticks, grid backgrounds, and aspect-ratio badges from plates.
+2. Replaced all unverified specs and descriptions with explicit bracketed indicators (`[PROJECT TITLE REQUIRED]`, `[CAMERA DETAILS NOT PROVIDED]`).
+3. Clamped mobile headline down to `clamp(1.875rem, 1.4rem + 2.5vw, 2.35rem)`.
+4. Refined mobile action bar into a floating centered pill with drawer collision avoidance.
+
+#### 3. Alternatives Considered & Rejected
+- **Keeping CAD corner ticks**: Rejected; user confirmed they diluted the editorial monograph aesthetic.
+
+#### 4. Verification Method & Evidence
+Committed in `c6f4b0a`. Verified via multi-viewport CDP capture (`capture.mjs`).
+
+---
+
+### DEC-009: [RETROSPECTIVE RECORD] Conditional Progression Authorization to Stage 6 with Active Punchlist
+
+- **Timestamp**: 2026-10-17 13:20 UTC
+- **Stage**: Stage 5 -> Stage 6 Transition
+- **Category**: `[EXPLICIT_REQUIREMENT]`
+- **Scope / Target**: Stage 6 Full Site Authorization
+- **Approval Status**: `APPROVED` (Conditional baseline progression)
+
+#### 1. Context & Problem Statement
+The user explicitly authorized moving to Stage 6 Full Implementation, but clarified that the first slice was accepted as a working baseline, not as a perfect or finally approved design, leaving an active punchlist.
+
+#### 2. Decision Taken
+Proceeded to Stage 6 with the following recorded active punchlist:
+1. Avoid an unfinished-looking hero placeholder.
+2. Maintain balanced desktop and mobile typography.
+3. Keep the interface purposeful and visually coherent.
+4. Remove unsupported claims, invented project details, and fake metadata.
+5. Make all visible navigation and actions work as intended.
+
+#### 3. Alternatives Considered & Rejected
+- **Halting until complete user delight**: Rejected; user explicitly gave progression authorization to expand the full site while addressing weaknesses.
+
+#### 4. Verification Method & Evidence
+User instruction prompt in chat transcript. Stage 6 work commenced.
+
+---
+
+### DEC-010: [RETROSPECTIVE RECORD] Stage 6 Full-Site Architecture: Bespoke Vector Solar Study, Monograph Archive, and Commission Intake
+
+- **Timestamp**: 2026-10-17 13:38 UTC
+- **Stage**: Stage 6 (Full Implementation Execution)
+- **Category**: `[INFERENCE]`
+- **Scope / Target**: Complete website codebase (`projects/measured-light/`)
+- **Approval Status**: `APPROVED` (Committed in `2fc11f6`, awaiting human milestone review)
+
+#### 1. Context & Problem Statement
+Stage 6 required expanding the full site while solving the "unfinished-looking hero" without fabricating photos or fake client claims.
+
+#### 2. Decision Taken
+1. Engineered an authentic architectural solar & spatial study vector graphic (45° solar azimuth vector, cantilever canopy, cast chiaroscuro shadow void) with an explicit transparent badge.
+2. Implemented the Monograph Archive with interactive category filtering (`All`, `Civic & Cultural`, `Residential & Private`, `In Progress`).
+3. Built the Methodology Triptych and Commission Intake experience with accessible form validation and live announcements (`aria-live="polite"`).
+4. Added native `<dialog>` Case Study modal.
+5. Connected `IntersectionObserver` to auto-hide the floating mobile CTA when the inquiry form is visible.
+
+#### 3. Alternatives Considered & Rejected
+- **Stock Architectural Photos**: Rejected; violates Core Principle 3.
+- **Empty Wireframe Box**: Rejected; looked unfinished in Stage 5.
+
+#### 4. Verification Method & Evidence
+Committed in `2fc11f6`. Automated CDP tests in `capture.mjs` confirmed 0px horizontal overflow across 320px–1440px, 0 console errors, filter DOM switching passed, and form validation passed. Visual evidence captured in `desktop-full.png`, `mobile.png`, `mobile-wide.png`.
