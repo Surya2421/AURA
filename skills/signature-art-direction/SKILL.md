@@ -42,6 +42,8 @@ Every project must instantiate a centralized design token file containing the co
 
   /* ------------------------------------------------------------------------
      2. TYPOGRAPHY: FLUID MODULAR TYPE SCALE (clamp)
+     Responsive Starting Ranges: Calibrate based on typeface metrics, headline
+     length, and language. Always evaluate on 320px–375px screens.
      ------------------------------------------------------------------------ */
   --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8125rem);      /* 12px -> 13px */
   --text-sm: clamp(0.875rem, 0.825rem + 0.25vw, 0.9375rem);   /* 14px -> 15px */
@@ -51,7 +53,7 @@ Every project must instantiate a centralized design token file containing the co
   --text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem);      /* 24px -> 30px */
   --text-3xl: clamp(1.875rem, 1.65rem + 1.125vw, 2.375rem);   /* 30px -> 38px */
   --text-4xl: clamp(2.25rem, 1.95rem + 1.5vw, 3rem);          /* 36px -> 48px */
-  --text-display: clamp(2.75rem, 2.2rem + 2.75vw, 4.5rem);    /* 44px -> 72px */
+  --text-display: clamp(2rem, 1.5rem + 2vw, 4.25rem);          /* 32px on 320px -> 68px on 1440px+ */
 
   /* ------------------------------------------------------------------------
      3. TYPOGRAPHY: LINE HEIGHTS & TRACKING
@@ -124,6 +126,8 @@ Every project must instantiate a centralized design token file containing the co
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--color-border-subtle);
   --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 0 1px var(--color-border-visible);
+  --shadow-mobile-action: 0 4px 20px rgba(0, 0, 0, 0.35);
+  --surface-mobile-action: rgba(19, 27, 46, 0.92);
 
   /* ------------------------------------------------------------------------
      7. MOTION TIMING & EASING

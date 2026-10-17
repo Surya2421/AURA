@@ -45,6 +45,7 @@ Most AI-generated websites look identical because models converge on a narrow su
 | **Pure Flat `#000000` / `#FFFFFF`** | Uncalibrated flat extremes often produce harsh contrast and eliminate material layering. | **Fully permitted** when dictated by client brand books, high-contrast Swiss typography, or intentional minimalist/brutalist art direction. When unconstrained, prefer calibrated darks (`#0D1117`, `#121214`) or warm architectural whites (`#FBFBFA`, `#F5F5F0`). |
 | **3D Elements & Shaders** | Pointless rotating floating geometric shapes that drain battery and slow LCP. | Fully encouraged when purposeful: interactive 3D product configurators, data visualizations, or hardware models that serve user understanding. |
 | **Monochromatic Blue / Cyan Themes** | Generic "tech SaaS" color bias that erases distinct brand personality. | Only permitted when explicitly mandated by client brand guidelines. Personal-brand and custom projects must derive their own distinct chromatic identity. |
+| **Decorative Technical Clutter (Techno-Chaff)** | Cosmetic corner crosshairs, arbitrary aspect-ratio badges, fake coordinates, invented camera/measurement metadata, and decorative CAD overlays simulate precision without substance and clutter editorial or commercial designs. | Only permitted when the website is an authentic technical instrument, developer terminal, CAD utility, or data deck (Archetype B) where metadata fields represent verified, functional, or user-operable parameters. |
 
 ---
 
@@ -70,15 +71,16 @@ AURA prescribes deliberate, characterful pairings rather than defaulting to gene
    - **Body / Interface**: Direct, unpretentious sans (*DM Sans*, *Work Sans*, or *Outfit*).
    - **Accent / Metadata**: Heavy-border labels, badge tags, and typewriter mono (*Courier Prime* or *Space Mono*).
 
-### 3.2 Typographic Metrics & Rules
-- **Fluid Modular Scale**: Never use static pixel font sizes for major headings. Use fluid CSS `clamp()` formulas:
-  - Display Hero: `clamp(2.5rem, 1.5rem + 5vw, 5.5rem)`
-  - H1 Headline: `clamp(2rem, 1.25rem + 3.5vw, 3.75rem)`
-  - H2 Subheadline: `clamp(1.5rem, 1rem + 2vw, 2.5rem)`
+### 3.2 Typographic Metrics & Responsive Calibration
+- **Responsive Starting Ranges (Not Rigid Formulas)**: Type scales must adapt to typeface x-height, character set, headline length, and language rather than forcing a single universal font size across all projects:
+  - Display Hero Starting Range: `clamp(1.75rem, 1.25rem + 2.5vw, 2.35rem)` on 320px–375px compact mobile, fluidly expanding up to `clamp(2.75rem, 2rem + 3vw, 5rem)` on wide desktop.
+  - H1 Headline Starting Range: `clamp(1.5rem, 1.15rem + 1.8vw, 2rem)` on mobile up to `clamp(2rem, 1.5rem + 2vw, 3.5rem)` on desktop.
+  - H2 Subheadline: `clamp(1.25rem, 1rem + 1vw, 1.75rem)` on mobile up to `clamp(1.5rem, 1.2rem + 1vw, 2.5rem)` on desktop.
+- **Mobile Viewport Diagnostic Signal**: On 320px–375px screens, a headline consuming an unusually large portion of the initial viewport height (e.g., > 35%–40% of viewport height) or breaking into awkward single-word lines should be treated as a **review warning and diagnostic signal**, prompting font size or line-height recalibration, not an automatic universal failure.
 - **Measure (Line Length)**: Body copy must be constrained between **45 and 75 characters per line** (`max-width: 65ch`). Never allow text to stretch endlessly across ultrawide monitors.
 - **Leading (Line Height)**:
-  - Display / Hero (Large text): Tight leading (`1.05` to `1.15`).
-  - Headings (H1–H3): Compact leading (`1.2` to `1.25`).
+  - Display / Hero (Large text): Tight leading (`1.05` to `1.18`). Ensure line-height provides sufficient descender/ascender clearance on wrapped mobile titles.
+  - Headings (H1–H3): Compact leading (`1.2` to `1.28`).
   - Body copy: Generous, readable leading (`1.55` to `1.7`).
 - **Tracking (Letter Spacing)**:
   - Large headings: Negative tracking (`-0.02em` to `-0.035em`) for cohesive optical grouping.
@@ -197,6 +199,36 @@ Motion must provide functional feedback, establish spatial relationships, or rew
 - **Authentic Domain SVGs**: Use clean, hand-crafted or curated SVG icons from established libraries (Lucide, Radix Icons, Feather, Heroicons) with unified stroke widths (1.5px or 2px). Never mix inconsistent icon weights or mismatched styles.
 - **No Hallucinated Visuals**: Do not invent fake user avatars with stock stock-photo smiles or AI-distorted faces. Use styled typographic initials or abstract geometric avatars when authentic headshots are unavailable.
 - **Responsive Media Handlers**: All images must use modern formats (`webp`, `avif`), have explicit `aspect-ratio` or `width`/`height` attributes to prevent Cumulative Layout Shift (CLS), and specify `loading="lazy"` for below-the-fold assets.
+
+### 7.4 Asset-Absent Holding Strategy
+When authentic client photography, hardware imagery, or brand artwork has not been supplied, the agent must NEVER default to empty wireframe boxes, decorative CAD techno-chaff, or synthetic AI-generated fake photos. Instead, select contextually among these deliberate holding strategies:
+
+1. **Typography-Led Compositions**:
+   - *Best For*: Thought leadership, literary monographs, law firms, philosophy/research portals, consulting agencies.
+   - *Execution*: Monumental display serif/grotesque hierarchy, pull quotes, and generous spatial negative space carry the complete visual weight without needing photography.
+2. **Verified Product or Interface Representations**:
+   - *Best For*: Developer tooling, software platforms, cloud utilities, cryptographic infrastructure.
+   - *Execution*: Render syntax-highlighted code blocks, real CLI execution transcripts, live state machines, or interactive API playgrounds using verified domain logic.
+3. **Purposeful Geometric or Domain-Specific Studies**:
+   - *Best For*: Architecture, industrial design, spatial audio, optics, engineering practices.
+   - *Execution*: Bespoke vector illustrations illustrating an authentic domain principle (e.g., solar azimuth ray tracing, acoustic baffle diffraction, structural cantilevers) paired with an explicit study label.
+   - *Guardrail*: Do NOT automatically choose geometric diagrams for every website. Use only where domain-appropriate.
+4. **Curated Abstract Material & Textures**:
+   - *Best For*: Studios, luxury brands, materials sciences, editorial magazines.
+   - *Execution*: Tonal canvas layering, fine-grain atmospheric textures, calibrated subtle borders, and warm paper/stone or metallic gradients.
+5. **Dignified Asset Placeholders**:
+   - *Best For*: Portfolios and product showcases where a visual slot must be demonstrated prior to client asset handover.
+   - *Execution*: Enforce intrinsic aspect-ratios (`4:3`, `16:9`, `1:1`), harmonious surface tone matching the color system, subtle tonal depth, and a clean, restrained, bracketed indicator (e.g., `[CLIENT ARCHITECTURAL PHOTOGRAPHY PENDING]`).
+   - *Prohibition*: Never allow an empty placeholder box to dominate the hero as an accidental wireframe error.
+6. **Asset Request Checkpoint**:
+   - If a project's core value proposition fundamentally cannot be evaluated without authentic imagery (e.g., a photojournalism archive), the agent must pause at Stage 1 or Stage 5 and explicitly request the essential assets from the user before proceeding.
+
+> [!IMPORTANT]
+> **Asset-Absent Rules of Engagement**:
+> - Never disguise realistic-sounding fictional details as authentic project photography.
+> - Never populate empty frames with invented camera optics, imaginary geographic coordinates, or fake dates.
+> - Distinguish an approved concept from an approved implementation: approving a concept does not approve synthetic photo fabrication.
+> - Keep project-specific visual solutions (such as an architectural solar diagram) separate from AURA's reusable universal doctrine.
 
 ---
 
