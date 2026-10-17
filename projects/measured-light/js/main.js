@@ -23,6 +23,7 @@ function initMobileDrawer() {
     drawer.setAttribute('aria-hidden', 'false');
     toggleBtn.setAttribute('aria-expanded', 'true');
     toggleBtn.setAttribute('aria-label', 'Close navigation menu');
+    document.body.classList.add('drawer-open');
     document.body.style.overflow = 'hidden'; // Prevent backdrop scrolling
 
     // Focus first focusable link in drawer
@@ -37,6 +38,7 @@ function initMobileDrawer() {
     drawer.setAttribute('aria-hidden', 'true');
     toggleBtn.setAttribute('aria-expanded', 'false');
     toggleBtn.setAttribute('aria-label', 'Open navigation menu');
+    document.body.classList.remove('drawer-open');
     document.body.style.overflow = '';
     toggleBtn.focus();
   }

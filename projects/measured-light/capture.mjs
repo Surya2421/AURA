@@ -58,25 +58,55 @@ async function main() {
   await send('Page.enable', {}, sessionId);
   await send('DOM.enable', {}, sessionId);
 
-  // 1. Mobile capture (375 x 900)
+  // 1. Mobile capture (375 x 812) - Narrow mobile standard (iPhone Mini/X/13 Mini)
   await send('Emulation.setDeviceMetricsOverride', {
     width: 375,
-    height: 900,
+    height: 812,
     deviceScaleFactor: 2,
     mobile: true
   }, sessionId);
 
   await send('Page.navigate', { url: 'http://localhost:3000' }, sessionId);
-  await new Promise(r => setTimeout(r, 1500));
+  await new Promise(r => setTimeout(r, 1200));
+
+  // Run DOM overflow check in 375px viewport
+  const overflowEval = await send('Runtime.evaluate', {
+    expression: `(() => {
+      const docW = document.documentElement.scrollWidth;
+      const winW = window.innerWidth;
+      const overflowing = [];
+      document.querySelectorAll('*').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.right > winW + 1) overflowing.push(el.tagName + '.' + el.className);
+      });
+      return { docW, winW, hasOverflow: docW > winW, count: overflowing.length };
+    })()`,
+    returnByValue: true
+  }, sessionId);
+  console.log('Mobile (375px) Overflow Evaluation:', overflowEval.result?.result?.value);
 
   const mobileShot = await send('Page.captureScreenshot', { format: 'png' }, sessionId);
   fs.writeFileSync('D:/AURA/projects/measured-light/mobile.png', Buffer.from(mobileShot.result.data, 'base64'));
-  console.log('Mobile screenshot saved to D:/AURA/projects/measured-light/mobile.png');
+  console.log('Mobile (375px) screenshot saved to D:/AURA/projects/measured-light/mobile.png');
 
-  // 2. Desktop capture (1440 x 2200)
+  // 2. Wider Mobile capture (414 x 896) - Standard large phone (iPhone XR/11/Plus)
+  await send('Emulation.setDeviceMetricsOverride', {
+    width: 414,
+    height: 896,
+    deviceScaleFactor: 2,
+    mobile: true
+  }, sessionId);
+
+  await new Promise(r => setTimeout(r, 800));
+
+  const wideMobileShot = await send('Page.captureScreenshot', { format: 'png' }, sessionId);
+  fs.writeFileSync('D:/AURA/projects/measured-light/mobile-wide.png', Buffer.from(wideMobileShot.result.data, 'base64'));
+  console.log('Wider mobile (414px) screenshot saved to D:/AURA/projects/measured-light/mobile-wide.png');
+
+  // 3. Desktop full-page capture (1440 x 2000)
   await send('Emulation.setDeviceMetricsOverride', {
     width: 1440,
-    height: 2200,
+    height: 2000,
     deviceScaleFactor: 1,
     mobile: false
   }, sessionId);
@@ -88,7 +118,7 @@ async function main() {
 
   ws.close();
   chrome.kill();
-  console.log('Capture complete!');
+  console.log('Multi-viewport visual QA capture complete!');
 }
 
 main().catch(err => {
