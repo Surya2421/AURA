@@ -56,8 +56,12 @@
 
   --color-border-subtle: rgba(28, 25, 23, 0.08);
   --color-border-visible: rgba(28, 25, 23, 0.16);
-  --color-border-dark: rgba(28, 25, 23, 0.35);
   --color-border-focus: #C2410C;           /* High-visibility burnished terracotta */
+
+  /* Form & Interactive Dialog Surfaces */
+  --color-input-bg: #FFFFFF;
+  --color-input-border: rgba(28, 25, 23, 0.2);
+  --color-dialog-backdrop: rgba(28, 25, 23, 0.5);
 
   /* Typography / Ink Hierarchy */
   --color-text-primary: #1C1917;           /* Deep carbon black printing ink */

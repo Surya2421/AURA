@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Measured Light — Architectural Photography Studio</title>
-  <meta name="description" content="Independent architectural photography studio dedicated to measuring structural mass, spatial voids, and raking solar incidence across the built environment.">
+  <meta name="description" content="Independent architectural photography practice dedicated to measuring structural mass, spatial voids, and raking solar incidence across the built environment.">
 
   <!-- Typography: Editorial Atelier Pairing (Google Fonts with Swap Display) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,14 +27,14 @@
         <a href="#main-content" class="masthead__title" aria-label="The Measured Light Home">
           The Measured Light
         </a>
-        <span class="masthead__tagline">[STUDIO NAME // ARCHITECTURAL PHOTOGRAPHY]</span>
+        <span class="masthead__tagline">[INDEPENDENT ARCHITECTURAL PHOTOGRAPHY PRACTICE]</span>
       </div>
 
       <!-- Desktop Navigation Links -->
       <nav class="masthead__nav" aria-label="Primary Navigation">
         <ul class="masthead__links">
           <li><a href="#featured-study" class="masthead__link">Selected Studies</a></li>
-          <li><a href="#monographs" class="masthead__link">Monograph Series</a></li>
+          <li><a href="#monographs" class="masthead__link">Monograph Archive</a></li>
           <li><a href="#methodology" class="masthead__link">Methodology</a></li>
           <li><a href="#inquire" class="masthead__link">Inquire</a></li>
         </ul>
@@ -64,7 +64,7 @@
     <div class="mobile-drawer__panel">
       <ul class="mobile-drawer__links">
         <li><a href="#featured-study" class="mobile-drawer__link"><span>Selected Studies</span> <span>→</span></a></li>
-        <li><a href="#monographs" class="mobile-drawer__link"><span>Monograph Series</span> <span>→</span></a></li>
+        <li><a href="#monographs" class="mobile-drawer__link"><span>Monograph Archive</span> <span>→</span></a></li>
         <li><a href="#methodology" class="mobile-drawer__link"><span>Methodology</span> <span>→</span></a></li>
         <li><a href="#inquire" class="mobile-drawer__link"><span>Inquire</span> <span>→</span></a></li>
       </ul>
@@ -102,13 +102,69 @@
           </div>
         </div>
 
-        <!-- Large Hero Photographic Placeholder Plate -->
-        <div class="plate-frame plate-frame--hero" role="region" aria-label="Hero Architectural Photography Placeholder">
-          <div class="placeholder-content">
-            <span class="plate-badge">[CLIENT ARCHITECTURAL PHOTOGRAPHY PENDING]</span>
-            <p class="placeholder-content__hint">
-              [High-resolution master study to be positioned here upon client asset provision]
-            </p>
+        <!-- Architectural Hero Photographic & Solar Study Plate -->
+        <div class="plate-frame plate-frame--hero" role="region" aria-label="Hero Architectural Solar and Spatial Study Plate">
+          <div class="hero-study-visual">
+            <svg class="hero-study-svg" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="sky-light" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+                  <stop offset="100%" stop-color="#EAE6DE" stop-opacity="0.5"/>
+                </linearGradient>
+                <linearGradient id="concrete-face" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#E5E1D8"/>
+                  <stop offset="100%" stop-color="#D6D0C3"/>
+                </linearGradient>
+                <linearGradient id="shadow-cast" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#1C1917" stop-opacity="0.72"/>
+                  <stop offset="100%" stop-color="#292524" stop-opacity="0.45"/>
+                </linearGradient>
+                <linearGradient id="solar-ray" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#C2410C" stop-opacity="0.6"/>
+                  <stop offset="100%" stop-color="#C2410C" stop-opacity="0.05"/>
+                </linearGradient>
+              </defs>
+
+              <!-- Atmospheric Ground & Sky Canvas -->
+              <rect width="1200" height="675" fill="url(#sky-light)"/>
+              
+              <!-- Ground Datum Line & Vanishing Vectors -->
+              <path d="M 0 520 L 1200 520" stroke="rgba(28,25,23,0.14)" stroke-width="1"/>
+              <path d="M 120 675 L 420 520" stroke="rgba(28,25,23,0.08)" stroke-width="1"/>
+              <path d="M 1080 675 L 780 520" stroke="rgba(28,25,23,0.08)" stroke-width="1"/>
+              
+              <!-- 45° Solar Raking Shadow Void -->
+              <polygon points="420,520 860,520 1040,675 260,675" fill="url(#shadow-cast)"/>
+
+              <!-- Tectonic Pavilion Volume -->
+              <polygon points="460,220 740,220 740,520 460,520" fill="#D2CDC2" stroke="rgba(28,25,23,0.2)" stroke-width="1"/>
+              <!-- Cantilevered Overhang (Daylit Upper Plane) -->
+              <polygon points="360,180 840,180 800,220 320,220" fill="#FBF9F5" stroke="rgba(28,25,23,0.22)" stroke-width="1.5"/>
+              <!-- Cantilever Fascia Edge -->
+              <polygon points="320,220 800,220 800,240 320,240" fill="url(#concrete-face)" stroke="rgba(28,25,23,0.22)" stroke-width="1.5"/>
+              <!-- Left Structural Pier Column -->
+              <polygon points="380,240 430,240 430,520 380,520" fill="#DDD8CE" stroke="rgba(28,25,23,0.2)" stroke-width="1"/>
+              <!-- Right Structural Pier Column -->
+              <polygon points="760,240 810,240 810,520 760,520" fill="#C8C2B6" stroke="rgba(28,25,23,0.2)" stroke-width="1"/>
+
+              <!-- 45° Solar Incidence Measurement Ray -->
+              <line x1="160" y1="50" x2="480" y2="370" stroke="url(#solar-ray)" stroke-width="1.5" stroke-dasharray="6 4"/>
+              <circle cx="160" cy="50" r="3.5" fill="#C2410C"/>
+              <text x="176" y="55" font-family="'JetBrains Mono', monospace" font-size="11" fill="#78716C" letter-spacing="0.08em">SOLAR INCIDENCE VECTOR // 45° AZIMUTH</text>
+
+              <line x1="360" y1="160" x2="840" y2="160" stroke="#78716C" stroke-width="0.75"/>
+              <line x1="360" y1="154" x2="360" y2="166" stroke="#78716C" stroke-width="1"/>
+              <line x1="840" y1="154" x2="840" y2="166" stroke="#78716C" stroke-width="1"/>
+              <text x="600" y="152" font-family="'JetBrains Mono', monospace" font-size="10" fill="#78716C" text-anchor="middle" letter-spacing="0.06em">CANTILEVERED SPATIAL CANOPY // 40M SPAN</text>
+            </svg>
+
+            <!-- Honest Curatorial Overlay Badge -->
+            <div class="hero-study-overlay">
+              <span class="plate-badge">[ARCHITECTURAL SOLAR &amp; SPATIAL STUDY]</span>
+              <p class="hero-study-overlay__hint">
+                [Provisional Monograph Exhibit — High-Resolution Commission Photography Installed Upon Asset Delivery]
+              </p>
+            </div>
           </div>
         </div>
 
@@ -123,7 +179,7 @@
           <div>
             <span class="plate-badge plate-badge--accent">[FEATURED PROJECT ENTRY POINT]</span>
           </div>
-          <span class="plate-badge">[PROJECT 01 // DETAILS PENDING]</span>
+          <span class="plate-badge">[PROJECT 01 // SELECTED STUDY]</span>
         </div>
 
         <!-- Asymmetric 60/40 Split Grid -->
@@ -184,14 +240,345 @@
             </div>
 
             <div>
-              <a href="#study-detail" class="study-action-link">
-                <span>[View Project Monograph]</span>
+              <button type="button" class="btn btn--ghost" data-modal-target="study-01">
+                <span>[Examine Full Study Monograph]</span>
                 <span aria-hidden="true">→</span>
-              </a>
+              </button>
             </div>
           </div>
 
         </article>
+
+      </div>
+    </section>
+
+    <!-- Monograph Archive Series -->
+    <section id="monographs" class="monographs-section" aria-labelledby="monographs-title">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="plate-badge plate-badge--accent">[STUDIO MONOGRAPH ARCHIVE]</span>
+          <h2 id="monographs-title" class="section-title">Curated Spatial Studies &amp; Portfolios</h2>
+          <p class="section-subtitle">
+            Curatorial architectural documentation categorized by structural typology, tectonic massing, and solar orientation.
+          </p>
+        </div>
+
+        <!-- Filter Tab Bar -->
+        <div class="archive-filters" role="tablist" aria-label="Monograph Typology Filters">
+          <button type="button" class="filter-btn is-active" role="tab" aria-selected="true" data-filter="all">All Portfolios [4]</button>
+          <button type="button" class="filter-btn" role="tab" aria-selected="false" data-filter="civic">Civic &amp; Cultural</button>
+          <button type="button" class="filter-btn" role="tab" aria-selected="false" data-filter="mass">Cantilevers &amp; Mass</button>
+          <button type="button" class="filter-btn" role="tab" aria-selected="false" data-filter="enclosures">Minimalist Enclosures</button>
+        </div>
+
+        <!-- Asymmetric Archive Catalog -->
+        <div class="archive-catalog" id="archive-grid">
+          
+          <!-- Study 01: Civic & Cultural (Wide Feature Spread) -->
+          <article class="archive-card archive-card--wide" data-typology="civic">
+            <div class="archive-card__visual">
+              <div class="plate-frame plate-frame--study">
+                <div class="placeholder-content">
+                  <span class="plate-badge">[PROJECT PHOTOGRAPH PENDING]</span>
+                  <p class="placeholder-content__hint">
+                    [High-resolution civic atrium plate to be supplied by client]
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="archive-card__body">
+              <div class="archive-card__meta">
+                <span class="plate-badge">MONOGRAPH NO. 01</span>
+                <span class="plate-badge plate-badge--accent">CIVIC &amp; CULTURAL</span>
+              </div>
+              <h3 class="archive-card__title">[PROJECT TITLE REQUIRED]</h3>
+              <p class="archive-card__location">[LOCATION &amp; DETAILS NOT PROVIDED]</p>
+              <p class="archive-card__narrative">
+                Documentation of structural daylight penetration through monumental cast concrete louvers, recording diurnal contrast transitions across civic public volumes.
+              </p>
+              <button type="button" class="study-action-btn" data-modal-target="study-01">
+                <span>[Examine Study Plate]</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Study 02: Cantilevers & Mass (Vertical Ratio) -->
+          <article class="archive-card archive-card--vertical" data-typology="mass">
+            <div class="archive-card__visual">
+              <div class="plate-frame plate-frame--portrait">
+                <div class="placeholder-content">
+                  <span class="plate-badge">[PROJECT PHOTOGRAPH PENDING]</span>
+                  <p class="placeholder-content__hint">
+                    [High-resolution cantilever study plate to be supplied by client]
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="archive-card__body">
+              <div class="archive-card__meta">
+                <span class="plate-badge">MONOGRAPH NO. 02</span>
+                <span class="plate-badge">CANTILEVERS &amp; MASS</span>
+              </div>
+              <h3 class="archive-card__title">[PROJECT TITLE REQUIRED]</h3>
+              <p class="archive-card__location">[LOCATION &amp; DETAILS NOT PROVIDED]</p>
+              <p class="archive-card__narrative">
+                Examination of structural overhang geometry and deep shadow voids revealing joint articulation under low-angle morning sunlight.
+              </p>
+              <button type="button" class="study-action-btn" data-modal-target="study-02">
+                <span>[Examine Study Plate]</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Study 03: Minimalist Enclosures -->
+          <article class="archive-card" data-typology="enclosures">
+            <div class="archive-card__visual">
+              <div class="plate-frame plate-frame--study">
+                <div class="placeholder-content">
+                  <span class="plate-badge">[PROJECT PHOTOGRAPH PENDING]</span>
+                  <p class="placeholder-content__hint">
+                    [High-resolution facade enclosure plate to be supplied by client]
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="archive-card__body">
+              <div class="archive-card__meta">
+                <span class="plate-badge">MONOGRAPH NO. 03</span>
+                <span class="plate-badge">MINIMALIST ENCLOSURES</span>
+              </div>
+              <h3 class="archive-card__title">[PROJECT TITLE REQUIRED]</h3>
+              <p class="archive-card__location">[LOCATION &amp; DETAILS NOT PROVIDED]</p>
+              <p class="archive-card__narrative">
+                A study of planar transitions and low-iron glazing reflection under direct noon solar zenith, isolating subtle materiality shifts.
+              </p>
+              <button type="button" class="study-action-btn" data-modal-target="study-03">
+                <span>[Examine Study Plate]</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Study 04: Cantilevers & Mass -->
+          <article class="archive-card" data-typology="mass">
+            <div class="archive-card__visual">
+              <div class="plate-frame plate-frame--study">
+                <div class="placeholder-content">
+                  <span class="plate-badge">[PROJECT PHOTOGRAPH PENDING]</span>
+                  <p class="placeholder-content__hint">
+                    [High-resolution tectonic facade plate to be supplied by client]
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="archive-card__body">
+              <div class="archive-card__meta">
+                <span class="plate-badge">MONOGRAPH NO. 04</span>
+                <span class="plate-badge">CANTILEVERS &amp; MASS</span>
+              </div>
+              <h3 class="archive-card__title">[PROJECT TITLE REQUIRED]</h3>
+              <p class="archive-card__location">[LOCATION &amp; DETAILS NOT PROVIDED]</p>
+              <p class="archive-card__narrative">
+                Orthogonal optical documentation recording post-tensioned beam joints, revealing texture through extreme chiaroscuro grazing light.
+              </p>
+              <button type="button" class="study-action-btn" data-modal-target="study-04">
+                <span>[Examine Study Plate]</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Studio Methodology Section -->
+    <section id="methodology" class="methodology-section" aria-labelledby="methodology-title">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="plate-badge plate-badge--accent">[OPTICAL PHILOSOPHY // METHODOLOGY]</span>
+          <h2 id="methodology-title" class="section-title">The Camera as an Instrument of Measurement</h2>
+          <p class="section-subtitle">
+            Architectural photography disciplined by solar geometry, tectonic mass, and optical perspective rectification.
+          </p>
+        </div>
+
+        <!-- 3-Column Asymmetric Triptych -->
+        <div class="methodology-grid">
+          
+          <div class="methodology-card">
+            <div class="methodology-card__header">
+              <span class="methodology-num">01</span>
+              <h3 class="methodology-card__title">The Solar Ephemeris</h3>
+            </div>
+            <p class="methodology-card__body">
+              Architecture is rendered visible solely by natural solar incidence. The studio conducts preliminary ephemeris calculations to chart sun azimuth and altitude angles across equinoxes, documenting structures precisely when raking light isolates surface texture and volumetric depth.
+            </p>
+            <div class="methodology-card__footer">
+              <span class="plate-badge">[SOLAR INCIDENCE DISCIPLINE]</span>
+            </div>
+          </div>
+
+          <div class="methodology-card">
+            <div class="methodology-card__header">
+              <span class="methodology-num">02</span>
+              <h3 class="methodology-card__title">Tectonic Mass &amp; Cast Void</h3>
+            </div>
+            <p class="methodology-card__body">
+              Rather than producing superficial marketing impressions, our compositions isolate structural load-bearing mass, cantilevered canopies, and cast negative voids. Shadow is recorded as a sculptured physical substance rather than an absence of information.
+            </p>
+            <div class="methodology-card__footer">
+              <span class="plate-badge">[SPATIAL VOID MEASUREMENT]</span>
+            </div>
+          </div>
+
+          <div class="methodology-card">
+            <div class="methodology-card__header">
+              <span class="methodology-num">03</span>
+              <h3 class="methodology-card__title">Large-Format Optical Rigor</h3>
+            </div>
+            <p class="methodology-card__body">
+              Employing calibrated perspective-control optics and large-format sensor discipline, every vertical axis remains strictly parallel with zero optical keystoning. The resulting monographs honor the tectonic precision envisioned by the architect and engineer.
+            </p>
+            <div class="methodology-card__footer">
+              <span class="plate-badge">[PERSPECTIVE RECTIFICATION]</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Commission Inquiry Section -->
+    <section id="inquire" class="inquire-section" aria-labelledby="inquire-title">
+      <div class="container">
+        
+        <div class="inquire-split">
+          
+          <!-- Left Column: Commission Guidelines & Context -->
+          <div class="inquire-info">
+            <span class="plate-badge plate-badge--accent">[STUDIO COMMISSIONS // INTAKE]</span>
+            <h2 id="inquire-title" class="inquire-info__title">Initiate an Architectural Commission</h2>
+            <p class="inquire-info__intro">
+              The studio accepts selective documentation commissions from architectural practices, cultural institutions, and monograph publishers.
+            </p>
+
+            <div class="commission-policies">
+              <div class="policy-item">
+                <span class="policy-item__label">Documentation Scope</span>
+                <p class="policy-item__text">
+                  Commissions encompass comprehensive seasonal daylight studies, interior spatial voids, tectonic material details, and large-format monograph plates.
+                </p>
+              </div>
+
+              <div class="policy-item">
+                <span class="policy-item__label">Archival Deliverables</span>
+                <p class="policy-item__text">
+                  Clients receive master uncompressed archival digital negatives, calibrated print plates, and publication rights for exhibitions and editorial monographs.
+                </p>
+              </div>
+
+              <div class="policy-item">
+                <span class="policy-item__label">Scheduling &amp; Ephemeris Planning</span>
+                <p class="policy-item__text">
+                  Due to natural solar cycles, commissions require 4–8 weeks lead time to calculate optimal daylight windows and weather conditions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Form -->
+          <div class="inquire-form-wrapper">
+            <form id="commission-form" class="commission-form" novalidate>
+              <div class="form-header">
+                <h3 class="form-header__title">Project Inquiry Form</h3>
+                <span class="plate-badge">[CONFIDENTIAL STUDIO INTAKE]</span>
+              </div>
+
+              <div class="form-grid">
+                
+                <div class="form-group">
+                  <label for="client-name" class="form-label">
+                    <span>Architectural Practice / Client</span>
+                    <span class="form-required" aria-hidden="true">*</span>
+                  </label>
+                  <input type="text" id="client-name" name="client_name" class="form-input" required placeholder="e.g. Atelier Light &amp; Structure">
+                  <span class="form-error" id="error-client-name" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="client-email" class="form-label">
+                    <span>Contact Email</span>
+                    <span class="form-required" aria-hidden="true">*</span>
+                  </label>
+                  <input type="email" id="client-email" name="client_email" class="form-input" required placeholder="name@practice-domain.com">
+                  <span class="form-error" id="error-client-email" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="project-typology" class="form-label">
+                    <span>Project Typology</span>
+                    <span class="form-required" aria-hidden="true">*</span>
+                  </label>
+                  <select id="project-typology" name="project_typology" class="form-select" required>
+                    <option value="">Select project typology...</option>
+                    <option value="cultural">Civic &amp; Cultural Institution</option>
+                    <option value="commercial">Commercial Headquarters &amp; Workspaces</option>
+                    <option value="residential">Private Residential Architecture</option>
+                    <option value="pavilion">Temporary Pavilion / Installation</option>
+                    <option value="publication">Monograph Publication / Retrospective</option>
+                  </select>
+                  <span class="form-error" id="error-project-typology" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="project-location" class="form-label">
+                    <span>Geographic Location &amp; Structure</span>
+                  </label>
+                  <input type="text" id="project-location" name="project_location" class="form-input" placeholder="e.g. Zurich, Switzerland — Atrium Structure">
+                </div>
+
+                <div class="form-group">
+                  <label for="commission-schedule" class="form-label">
+                    <span>Target Commission Timeline</span>
+                  </label>
+                  <select id="commission-schedule" name="commission_schedule" class="form-select">
+                    <option value="flexible">Flexible / Weather &amp; Ephemeris Dependent</option>
+                    <option value="q1-q2">Upcoming Season [Q1/Q2]</option>
+                    <option value="q3-q4">Subsequent Season [Q3/Q4]</option>
+                    <option value="immediate">Immediate Availability Required</option>
+                  </select>
+                </div>
+
+                <div class="form-group form-group--full">
+                  <label for="project-scope" class="form-label">
+                    <span>Architectural Scope &amp; Natural Light Context</span>
+                  </label>
+                  <textarea id="project-scope" name="project_scope" rows="4" class="form-textarea" placeholder="Describe primary building materials, key facade orientations, or seasonal daylight conditions to be captured..."></textarea>
+                </div>
+
+              </div>
+
+              <div class="form-footer">
+                <button type="submit" class="btn btn--primary" id="submit-inquiry-btn">
+                  <span>[Submit Commission Request]</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+
+              <!-- Accessible Live Feedback Alert -->
+              <div id="inquiry-status" class="form-status" role="status" aria-live="polite"></div>
+
+            </form>
+          </div>
+
+        </div>
 
       </div>
     </section>
@@ -201,19 +588,69 @@
   <!-- Global Footer Baseline -->
   <footer class="footer-baseline" role="contentinfo">
     <div class="container footer-baseline__inner">
-      <div>
-        <span>The Measured Light © [YEAR REQUIRED] — Architectural Photography</span>
+      <div class="footer-baseline__brand">
+        <span class="footer-title">The Measured Light</span>
+        <span class="footer-tagline">Architectural Photography &amp; Monograph Practice</span>
+      </div>
+      <div class="footer-baseline__links">
+        <a href="#featured-study">Selected Studies</a>
+        <a href="#monographs">Archive</a>
+        <a href="#methodology">Methodology</a>
+        <a href="#inquire">Inquire</a>
+      </div>
+      <div class="footer-baseline__notes">
+        <span>The Measured Light © [YEAR REQUIRED]</span>
+        <span>•</span>
+        <span>All photographic rights reserved</span>
       </div>
       <div>
-        <span>[AURA Engineering Prototype — First Slice Specification]</span>
-      </div>
-      <div>
-        <a href="#main-content">Back to Top ↑</a>
+        <a href="#main-content" class="back-to-top-link">Back to Top ↑</a>
       </div>
     </div>
   </footer>
 
-  <!-- Mobile Sticky Thumb-Zone Action Bar (Visible < 768px) -->
+  <!-- Accessible Native HTML5 Study Modal -->
+  <dialog id="study-modal" class="study-dialog" aria-labelledby="modal-title" aria-modal="true">
+    <div class="study-dialog__panel">
+      <div class="study-dialog__header">
+        <div>
+          <span class="plate-badge plate-badge--accent" id="modal-typology">[CIVIC // CULTURAL]</span>
+          <h3 id="modal-title" class="study-dialog__title">[PROJECT TITLE REQUIRED]</h3>
+        </div>
+        <button type="button" class="study-dialog__close" id="modal-close-btn" aria-label="Close study dialog">
+          <span aria-hidden="true">✕</span>
+        </button>
+      </div>
+
+      <div class="study-dialog__body">
+        <div class="plate-frame plate-frame--study">
+          <div class="placeholder-content">
+            <span class="plate-badge">[HIGH-RESOLUTION ARCHITECTURAL PLATE PENDING]</span>
+            <p class="placeholder-content__hint">
+              [Master monograph plate asset to be supplied by client. Dimensions and color profile calibrated to ISO 12647-2.]
+            </p>
+          </div>
+        </div>
+
+        <div class="study-dialog__specs">
+          <h4 class="study-dialog__specs-heading">Curatorial &amp; Optical Parameters</h4>
+          <ul class="study-dialog__specs-list">
+            <li><strong>Documentation Status:</strong> [Client Photography Asset Pending]</li>
+            <li><strong>Perspective Control:</strong> [Optical Shift &amp; Rectification Active]</li>
+            <li><strong>Monograph Medium:</strong> [Large-Format Analog / Digital Master]</li>
+            <li><strong>Licensing:</strong> [Archival Monograph Edition]</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="study-dialog__footer">
+        <button type="button" class="btn btn--ghost" id="modal-footer-close-btn">Close Study</button>
+        <a href="#inquire" class="btn btn--primary" id="modal-inquire-btn">[Inquire About Similar Commission]</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Mobile Floating Action Pill (Refined Thumb-Zone) -->
   <div class="mobile-action-bar" aria-label="Quick Mobile Actions">
     <a href="#inquire" class="btn btn--primary">[Initiate Commission]</a>
   </div>
