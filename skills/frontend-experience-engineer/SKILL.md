@@ -18,12 +18,24 @@ The `frontend-experience-engineer` transforms design concepts and tokens into ro
 3. **Responsive Resilience (No Overflow Hacks)**:
    - Pages must display seamlessly from **320px up to 3840px**.
    - Do NOT apply `body { overflow-x: hidden; }` to hide broken layouts. Ensure all child containers use `min-width: 0`, responsive flex wraps, or CSS Grid with `minmax(0, 1fr)`.
-4. **Authentic Content Guardrail**: Never insert fabricated customer quotes, fake partner logos, or invented performance metrics. Use structured placeholders (`[Verified Case Study Metric Needed]`) or focus on authentic technical architecture.
-5. **Fluid & Accessible Typography**: Headings must use fluid `clamp()` sizing. Body text must maintain a measure between 45 and 75 characters (`max-width: 65ch`).
+4. **Content Authenticity & Fact Verification**:
+   - Verify every visible project claim, client name, coordinate, date, and technical parameter against supplied sources.
+   - Mark unknown or pending facts with concise, unmistakable bracketed placeholders (e.g., `[PROJECT TITLE REQUIRED]`, `[SPECIFICATION PENDING]`).
+   - Never invent testimonials, customer logos, locations, technical specifications, camera/optical metadata, benchmark results, or case-study narratives to fill empty space.
+   - Keep demonstrative UI examples clearly distinct from actual client claims.
+   - Frontend-only prototype forms must never simulate or imply successful backend transmission when no backend exists (state clearly: `[Prototype Form — Submission Not Connected]`).
+5. **Fluid & Accessible Typography**: Headings must use fluid `clamp()` sizing with sensible responsive starting ranges. Body text must maintain a measure between 45 and 75 characters (`max-width: 65ch`).
 6. **Accessible Interactive Elements**:
    - Touch targets must measure at least **44 × 44px** on touch viewports.
    - Visible `:focus-visible` outlines must be preserved.
    - All animations must be GPU-accelerated (`transform`, `opacity`) and wrapped with `@media (prefers-reduced-motion: reduce)`.
+7. **Dignified Asset Placeholders**:
+   - When authentic media is pending, preserve intended aspect ratios (`aspect-ratio: 16 / 9`, `4 / 3`, etc.) to prevent Cumulative Layout Shift (CLS).
+   - Use deliberate contrast and harmonious surface tones matching `tokens.css`.
+   - Distinguish placeholders from real media using explicit, restrained bracketed status badges (`[CLIENT ASSET PENDING]`).
+   - Strictly avoid pseudo-technical CAD clutter (fake coordinates, corner crosshairs, arbitrary aspect-ratio badges, fake camera optics) added merely to decorate empty frames.
+   - Never allow an empty placeholder box to dominate the hero as an accidental wireframe error state.
+   - Never treat placeholder rendering as proof of final visual quality.
 
 ---
 
@@ -145,25 +157,76 @@ Once human approval is received at Stage 5, this skill expands the codebase into
 }
 ```
 
-### Thumb-Zone Ergonomic Sticky Mobile Bar:
+### Collision-Safe Floating Mobile Action Pattern:
+Fixed or floating conversion buttons must be engineered to prevent obscuring page content, forms, or footer links:
+
 ```css
+/* 1. Floating Action Pill Container */
 .aura-mobile-action-bar {
   display: flex;
   position: fixed;
-  bottom: 0;
+  bottom: max(1rem, env(safe-area-inset-bottom));
   left: 0;
   right: 0;
-  z-index: 900;
-  padding: 0.75rem var(--container-padding);
-  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
-  background: var(--color-surface-1);
-  backdrop-filter: blur(12px);
-  border-top: 1px solid var(--color-border-subtle);
+  z-index: 180;
+  justify-content: center;
+  align-items: center;
+  padding: 0 var(--space-4);
+  pointer-events: none; /* Allows clicks through empty lateral space */
+  transition: opacity var(--duration-fast) var(--ease-snappy),
+              visibility var(--duration-fast);
+}
+
+.aura-mobile-action-bar .btn {
+  pointer-events: auto;
+  min-height: 44px;
+  min-width: 200px;
+  max-width: 280px;
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-mobile-action);
+}
+
+/* 2. Mandatory Bottom Page Clearance (Prevents footer/content occlusion) */
+.aura-page-footer,
+.aura-content-bottom {
+  padding-bottom: clamp(4.5rem, 3.5rem + 3vw, 6rem);
+}
+
+/* 3. Automatic Concealment During Overlays (Drawers, Modals) */
+body.drawer-open .aura-mobile-action-bar,
+body.modal-open .aura-mobile-action-bar {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 @media (min-width: 768px) {
   .aura-mobile-action-bar {
-    display: none; /* Desktop uses inline navbar CTA */
+    display: none; /* Desktop utilizes header navigation CTA */
   }
+}
+```
+
+#### Optional Intersection Concealment (Target Form Visibility):
+When a page features an inline commission or inquiry form (e.g. `#inquire`), avoid duplicate action noise by observing the section and fading out the floating pill while the user interacts with the form:
+```javascript
+// Optional: Use only when an inline conversion section exists
+const targetSection = document.querySelector('#inquire');
+const floatingBar = document.querySelector('.aura-mobile-action-bar');
+
+if (targetSection && floatingBar && 'IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        floatingBar.style.opacity = '0';
+        floatingBar.style.pointerEvents = 'none';
+      } else if (!document.body.classList.contains('drawer-open')) {
+        floatingBar.style.opacity = '1';
+        floatingBar.style.pointerEvents = 'auto';
+      }
+    });
+  }, { threshold: 0.15 });
+  observer.observe(targetSection);
 }
 ```

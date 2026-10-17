@@ -21,7 +21,8 @@ AURA categorizes all engineering checks into two strict enforcement levels:
 | **2. Performance** | Asset Budgets (JS/CSS/Image weights) | ADVISORY QUALITY TARGET | Total JS ≤ 150 KB, CSS ≤ 50 KB initial load |
 | **3. Responsive Integrity** | Horizontal Overflow & Text Clipping | **MANDATORY HARD GATE** | 0px horizontal body scroll across 320px–3840px |
 | **3. Responsive Integrity** | Touch Target Sizing (Mobile) | **MANDATORY HARD GATE** | All interactive targets ≥ 44 × 44px on touch screens |
-| **4. Content Integrity** | Fabricated Metrics / Social Proof | **MANDATORY HARD GATE** | Zero synthetic reviews or unverified client statistics |
+| **3. Responsive Integrity** | Floating/Sticky UI Clearance & Overlap | **MANDATORY HARD GATE** | Zero occlusion of interactive inputs, buttons, footer links, or overlays |
+| **4. Content Integrity** | Zero Content & Fact Fabrication | **MANDATORY HARD GATE** | Zero synthetic reviews, fake metadata/coordinates, or unverified claims |
 | **5. Code Architecture** | Zero Console Errors & Token Adherence | **MANDATORY HARD GATE** | Zero uncaught runtime errors; no arbitrary magic numbers |
 
 ---
@@ -105,6 +106,7 @@ Layouts must be verified across five canonical breakpoints:
   padding-right: max(1rem, env(safe-area-inset-right));
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
   ```
+- **Zero Floating/Sticky UI Collisions [MANDATORY HARD GATE]**: Fixed or floating elements (such as bottom action bars or floating pills) must never obscure scrollable text, form fields, submit controls, footer copyright/links, or dialog/drawer overlays. The document layout must provide adequate bottom clearance (e.g., `padding-bottom: clamp(4.5rem, 3.5rem + 3vw, 6rem)` on page containers/footers), and overlays (drawers, modals) must conceal the floating bar.
 
 ---
 
@@ -116,6 +118,9 @@ AURA forbids synthetic, fabricated credibility. Fake data devalues software.
 - **No Hallucinated Social Proof**: Never inject fake customer quotes ("This product transformed our lives! - John Doe, VP at Google").
 - **No Hallucinated Numbers**: Never invent unsubstantiated vanity statistics ("Used by 50,000+ developers in 120 countries", "99.999% uptime guaranteed").
 - **No Hallucinated Logos**: Never render arbitrary Fortune 500 company logos without explicit client direction.
+- **No Hallucinated Technical Specifications or Coordinates**: Never invent lens models, focal lengths, aperture/exposure values, ISO settings, geographic coordinates, or architectural measurements. If unsupplied by the client, use explicit bracketed indicators (e.g., `[CAMERA DETAILS NOT PROVIDED]`, `[COORDINATES PENDING]`).
+- **No Fabricated Project Narratives**: Do not generate fictional architectural case-study prose or corporate milestones disguised as authentic client truth.
+- **Form Submission Transparency**: A frontend-only prototype form must never simulate successful backend transmission or imply a live server exists unless an actual operational endpoint is connected (clearly label prototype states).
 - **Handling Incomplete Content**:
   - When real assets or copy are pending, use structured, unmistakable placeholders:
     - Text: `[Client Case Study Metric Required]`
