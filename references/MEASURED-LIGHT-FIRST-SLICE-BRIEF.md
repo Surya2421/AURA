@@ -141,7 +141,7 @@ In strict adherence to Core Principle 3 (Zero Content Fabrication), no synthetic
 
 Before writing frontend code, the user must confirm:
 
-1. **Target Project Directory**: Where should the codebase live? (e.g., `D:\AURA\projects\measured-light` or a dedicated external directory).
+1. **Target Project Directory**: Where should the codebase live? (e.g., `projects/measured-light` or a dedicated external directory).
 2. **Framework / Runtime Preference**:
    - *Option A (Zero-Dependency Static)*: Pure semantic HTML5, modern vanilla CSS with `tokens.css`, and vanilla ES modules (maximum portability, zero build tool overhead).
    - *Option B (Component Framework)*: Vite + React / Astro / Svelte / Next.js (if client project requires componentized routing or SSG).

@@ -75,10 +75,14 @@ AURA/
 │   │   └── SKILL.md
 │   └── visual-acceptance-reviewer/    # Visual QA, screenshot audits, and rendering fidelity
 │       └── SKILL.md
+├── scripts/                           # Reproducible regression & verification test runners
+│   ├── test-regression.mjs            # Built-in Node test runner (zero external dependencies)
+│   └── audit-content-authenticity.mjs # Content authenticity & pseudo-metadata scanner
 ├── references/                        # Shared doctrines, standards, and historical records
 │   ├── PERSONAL-DESIGN-DOCTRINE.md    # Baseline aesthetic philosophy and layout archetypes
 │   ├── WEBSITE-QUALITY-STANDARD.md    # Multi-dimensional engineering benchmarks
-│   └── DESIGN-DECISION-LOG.md         # Immutable decision ledger with 4-category taxonomy
+│   ├── DESIGN-DECISION-LOG.md         # Immutable decision ledger with 4-category taxonomy
+│   └── MEASURED-LIGHT-FIRST-SLICE-BRIEF.md # Case study first-slice build brief
 ├── evaluations/                       # Repeatable evaluation suites and rubrics
 │   ├── design-evals.md                # Anti-cliché, brand alignment, and aesthetic rubrics
 │   └── quality-evals.md               # Stress testing, a11y benchmarks, and regression suites
@@ -86,6 +90,32 @@ AURA/
     ├── README.md                      # Cross-agent adaptation philosophy
     └── agent-specific-notes.md        # Antigravity, Claude Code, Cursor, Copilot, Windsurf guides
 ```
+
+---
+
+## Verification & Regression Testing
+
+AURA includes a built-in, zero-dependency regression test runner under `scripts/`:
+
+### 1. Browser-Free Regression Suite (Fresh Clone)
+Run immediately from any fresh checkout with standard Node.js (no `npm install` needed):
+```bash
+node scripts/test-regression.mjs
+```
+Verifies decision-log schema integrity, content authenticity (prohibiting unbracketed fake camera/GPS metadata), dignified placeholder markup, portable relative references, and mobile CSS ergonomics.
+
+### 2. Standalone Content Authenticity Scanner
+```bash
+node scripts/audit-content-authenticity.mjs [path/to/file.html]
+```
+
+### 3. Full Suite with Live Browser Checks (CDP)
+When Google Chrome and a local preview server (`http://localhost:3000`) are available:
+```bash
+# Optional: export CHROME_PATH="/path/to/chrome"
+node scripts/test-regression.mjs --with-browser
+```
+Tests multi-viewport horizontal overflow (320px–1440px), mobile action bar collision clearance at scroll bottom, and drawer concealment.
 
 ---
 

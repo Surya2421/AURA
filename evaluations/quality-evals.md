@@ -3,6 +3,15 @@
 > **Status**: Repeatable Engineering Benchmark Suite  
 > **Purpose**: Provides automated test specifications, CLI commands, and objective pass/fail criteria for verifying accessibility, performance, responsive resilience, interaction integrity, and regressions.
 
+> [!NOTE]
+> **Verification Modalities Distinction**:
+> - **1. Executable Test Runners (Repository Built-In)**: Fully implemented under [`scripts/`](../scripts/) with zero external npm dependencies:
+>   - `node scripts/test-regression.mjs`: Browser-free suite (runs on fresh clones).
+>   - `node scripts/test-regression.mjs --with-browser`: Live CDP browser suite (requires Chrome + preview server).
+>   - `node scripts/audit-content-authenticity.mjs`: Content authenticity and pseudo-metadata scanner.
+> - **2. Test Specifications (CI Templates)**: The Playwright snippets below (`tests/*.spec.ts`) are vendor-agnostic test specifications and reference templates for projects equipped with Playwright or Vitest test runners in CI environments.
+> - **3. Manual Verification Checklists**: Optical checks and tactile review steps requiring DevTools inspection or human editorial judgment.
+
 This suite is executed primarily during Stage 7 (Functional QA) and Stage 9 (Regression Testing).
 
 ---
