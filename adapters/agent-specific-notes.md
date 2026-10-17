@@ -58,7 +58,7 @@
 - **Workspace Rule (`.cursorrules` or `.cursor/rules/aura.mdc`)**:
   ```markdown
   You are executing the AURA website engineering system.
-  Read and follow D:/AURA/AGENTS.md and D:/AURA/skills/website-orchestrator/SKILL.md.
+  Read and follow AGENTS.md and skills/website-orchestrator/SKILL.md.
   - Log all choices in references/DESIGN-DECISION-LOG.md.
   - Build the First Slice (Navigation + Hero + 1 Core Section) first.
   - HALT at Stage 5. Present the localhost preview URL and visual summary to the user.

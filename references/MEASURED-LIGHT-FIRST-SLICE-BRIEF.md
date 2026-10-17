@@ -2,7 +2,7 @@
 
 > **Document Path**: `references/MEASURED-LIGHT-FIRST-SLICE-BRIEF.md`  
 > **Status**: Specification Document — **Awaiting Implementation Authorization**  
-> **Authority**: Governed by [`AGENTS.md`](file:///D:/AURA/AGENTS.md), [`PERSONAL-DESIGN-DOCTRINE.md`](file:///D:/AURA/references/PERSONAL-DESIGN-DOCTRINE.md), and [`WEBSITE-QUALITY-STANDARD.md`](file:///D:/AURA/references/WEBSITE-QUALITY-STANDARD.md).  
+> **Authority**: Governed by [`AGENTS.md`](../AGENTS.md), [`PERSONAL-DESIGN-DOCTRINE.md`](./PERSONAL-DESIGN-DOCTRINE.md), and [`WEBSITE-QUALITY-STANDARD.md`](./WEBSITE-QUALITY-STANDARD.md).  
 > **Governing Gate**: Execution of frontend code is **strictly frozen** until the user explicitly authorizes Stage 4 implementation.
 
 ---

@@ -1,11 +1,54 @@
 import { spawn } from 'node:child_process';
 import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectRoot = __dirname;
+const repoRoot = path.resolve(projectRoot, '..', '..');
+
+function findChromePath() {
+  if (process.env.CHROME_PATH && fs.existsSync(process.env.CHROME_PATH)) {
+    return process.env.CHROME_PATH;
+  }
+  if (process.env.CHROME_BIN && fs.existsSync(process.env.CHROME_BIN)) {
+    return process.env.CHROME_BIN;
+  }
+  const candidatePaths = [
+    // Windows standard locations
+    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+    path.join(process.env.LOCALAPPDATA || '', 'Google\\Chrome\\Application\\chrome.exe'),
+    // macOS standard locations
+    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    // Linux standard locations
+    '/usr/bin/google-chrome',
+    '/usr/bin/chromium-browser',
+    '/usr/bin/chromium'
+  ];
+  for (const candidate of candidatePaths) {
+    if (candidate && fs.existsSync(candidate)) return candidate;
+  }
+  return null;
+}
 
 async function main() {
-  const chrome = spawn('C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', [
+  const chromeExecutable = findChromePath();
+  if (!chromeExecutable) {
+    console.error('Error: Google Chrome executable not found.');
+    console.error('Please install Google Chrome or specify its path via the CHROME_PATH environment variable.');
+    console.error('Example: set CHROME_PATH=C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe (Windows)');
+    console.error('         export CHROME_PATH=/usr/bin/google-chrome (Linux/macOS)');
+    process.exit(1);
+  }
+
+  const profileDir = path.join(repoRoot, '.chrome_cdp_profile');
+  const chrome = spawn(chromeExecutable, [
     '--headless=new',
     '--remote-debugging-port=9222',
-    '--user-data-dir=D:\\AURA\\.chrome_cdp_profile',
+    `--user-data-dir=${profileDir}`,
     '--no-first-run',
     '--no-default-browser-check'
   ]);
@@ -60,8 +103,11 @@ async function main() {
     });
   }
 
+  // Preview server target URL
+  const targetUrl = process.env.AURA_PREVIEW_URL || 'http://localhost:3000';
+
   // Create new target
-  const { result: { targetId } } = await send('Target.createTarget', { url: 'http://localhost:3000' });
+  const { result: { targetId } } = await send('Target.createTarget', { url: targetUrl });
   const { result: { sessionId } } = await send('Target.attachToTarget', { targetId, flatten: true });
 
   await send('Page.enable', {}, sessionId);
@@ -76,7 +122,7 @@ async function main() {
     mobile: true
   }, sessionId);
 
-  await send('Page.navigate', { url: 'http://localhost:3000' }, sessionId);
+  await send('Page.navigate', { url: targetUrl }, sessionId);
   await new Promise(r => setTimeout(r, 1200));
 
   // Run DOM overflow check across multiple viewports
@@ -104,8 +150,9 @@ async function main() {
   }, sessionId);
   await new Promise(r => setTimeout(r, 500));
   const mobileShot = await send('Page.captureScreenshot', { format: 'png' }, sessionId);
-  fs.writeFileSync('D:/AURA/projects/measured-light/mobile.png', Buffer.from(mobileShot.result.data, 'base64'));
-  console.log('Mobile (375px) screenshot saved to D:/AURA/projects/measured-light/mobile.png');
+  const mobileShotPath = path.join(projectRoot, 'mobile.png');
+  fs.writeFileSync(mobileShotPath, Buffer.from(mobileShot.result.data, 'base64'));
+  console.log(`Mobile (375px) screenshot saved to ${mobileShotPath}`);
 
   // 2. Wider Mobile capture (414 x 896)
   await send('Emulation.setDeviceMetricsOverride', {
@@ -116,8 +163,9 @@ async function main() {
   }, sessionId);
   await new Promise(r => setTimeout(r, 600));
   const wideMobileShot = await send('Page.captureScreenshot', { format: 'png' }, sessionId);
-  fs.writeFileSync('D:/AURA/projects/measured-light/mobile-wide.png', Buffer.from(wideMobileShot.result.data, 'base64'));
-  console.log('Wider mobile (414px) screenshot saved to D:/AURA/projects/measured-light/mobile-wide.png');
+  const wideMobileShotPath = path.join(projectRoot, 'mobile-wide.png');
+  fs.writeFileSync(wideMobileShotPath, Buffer.from(wideMobileShot.result.data, 'base64'));
+  console.log(`Wider mobile (414px) screenshot saved to ${wideMobileShotPath}`);
 
   // 3. Functional Interaction Verification
   // Test 3a: Filter click
@@ -183,8 +231,9 @@ async function main() {
   await new Promise(r => setTimeout(r, 1200));
 
   const desktopShot = await send('Page.captureScreenshot', { format: 'png' }, sessionId);
-  fs.writeFileSync('D:/AURA/projects/measured-light/desktop-full.png', Buffer.from(desktopShot.result.data, 'base64'));
-  console.log('Desktop full-page screenshot saved to D:/AURA/projects/measured-light/desktop-full.png');
+  const desktopShotPath = path.join(projectRoot, 'desktop-full.png');
+  fs.writeFileSync(desktopShotPath, Buffer.from(desktopShot.result.data, 'base64'));
+  console.log(`Desktop full-page screenshot saved to ${desktopShotPath}`);
 
   console.log('Runtime Errors Count:', runtimeErrors.length);
   if (runtimeErrors.length > 0) {
