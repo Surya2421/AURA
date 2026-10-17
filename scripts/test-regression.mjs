@@ -69,12 +69,13 @@ async function runRegressionSuite() {
     }
 
     // 1B. Retrospective records are explicitly marked to prevent fabricated historical sign-offs
-    const retroMatches = decisionLogContent.match(/\[RETROSPECTIVE RECORD\]/g) || [];
-    if (retroMatches.length >= 5) {
-      console.log(`  ✓ PASS: ${retroMatches.length} retrospective records transparently marked ([RETROSPECTIVE RECORD]).`);
+    // Specifically count decision entries (DEC-006 to DEC-010) bearing the marker
+    const retroEntryMatches = decisionLogContent.match(/### DEC-\d{3}:.*\[RETROSPECTIVE RECORD\]/g) || [];
+    if (retroEntryMatches.length === 5) {
+      console.log(`  ✓ PASS: Exactly ${retroEntryMatches.length} retrospective decision entries (DEC-006 to DEC-010) are transparently marked.`);
       passed++;
     } else {
-      console.error(`  ✗ FAIL: Expected at least 5 retrospective markers for DEC-006 through DEC-010, found ${retroMatches.length}.`);
+      console.error(`  ✗ FAIL: Expected exactly 5 retrospective decision entries (DEC-006 through DEC-010), found ${retroEntryMatches.length}.`);
       failed++;
     }
 
