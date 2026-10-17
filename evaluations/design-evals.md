@@ -53,6 +53,10 @@ Run the following heuristic checklist against the codebase and visual renderings
 5. [ ] Check for default system sans-serif without character.
        -> Pass: Deliberate editorial, technical, or neo-brutalist typography pairings with fluid clamp scaling.
        -> Fail: Generic unconfigured sans-serif with static pixel sizes and loose tracking.
+
+6. [ ] Check for decorative technical clutter (techno-chaff).
+       -> Pass: Clean editorial typography, authentic domain indicators, or functional metadata serving a genuine technical tool.
+       -> Fail: Cosmetic corner crosshairs, arbitrary aspect-ratio badges, fake coordinates, invented camera/measurement metadata, or decorative plate indexes added to non-CAD/non-terminal projects merely to fill empty space.
 ```
 
 ### Scoring Rule:
@@ -118,7 +122,50 @@ Verify strict adherence to Core Principle 3: Zero content fabrication.
    - If not, has it been removed or replaced with an unexaggerated descriptive statement?
 3. Scan all partner and client logo components.
    - Are any trademarked corporate logos displayed that the client did not explicitly provide?
+4. Scan all technical metadata (camera models, lenses, focal lengths, aperture, exposure, coordinates, dimensions).
+   - Can each specification be substantiated by verified client data?
+   - If not, is it clearly flagged with explicit bracketed placeholders (`[CAMERA DETAILS NOT PROVIDED]`, `[COORDINATES PENDING]`)?
+5. Scan for fictional project narratives presented as client truth.
+   - Are project narratives and case studies marked with `[PROJECT DOCUMENTATION PENDING]` when unverified?
+6. Check frontend forms: verify that prototype forms do not claim live backend transmission.
 
 ### Rubric:
 - **Score 5**: 100% authentic; zero synthetic claims; all placeholders transparent and professional.
-- **Score 1 (Automatic Failure)**: Any fabricated testimonial, invented statistic, or hallucinated partner logo found in the codebase.
+- **Score 1 (Automatic Failure)**: Any fabricated testimonial, invented statistic, unverified technical specification, or hallucinated partner logo found in the codebase.
+
+---
+
+## 6. Test Suite 5: Asset-Absent & Placeholder Dignity Evaluation
+
+### Objective:
+Verify that when authentic photography, product imagery, or client media is unavailable, the holding strategy is deliberate, dignified, and visually complete, rather than an empty broken wireframe box or techno-chaff overlay.
+
+### Evaluation Criteria:
+1. **Holding Strategy Fit**: Context-appropriate strategy chosen (Typography-Led, Verified product/data, Purposeful domain geometric study, Curated texture, or Dignified placeholder) per `PERSONAL-DESIGN-DOCTRINE.md` Section 7.4.
+2. **Dimensional Discipline**: Intrinsic aspect ratio locked (`16:9`, `4:3`, `1:1`) to prevent Cumulative Layout Shift (CLS).
+3. **Visual Dignity**: Tonal canvas background and subtle border harmonize with `tokens.css`; the element feels intentional, not like a missing-asset error state.
+4. **Honest Labeling**: Status clearly announced with restrained bracketed tag (`[CLIENT ASSET PENDING]`) without simulated CAD corner crosshairs or invented metadata.
+5. **Hero Dominance Balance**: If a placeholder is used in the hero, it does not overpower the composition as an ugly empty grey box.
+
+### Rubric:
+- **Score 5**: Placeholder or asset-absent composition feels deliberate, refined, and authentic; transparently communicates asset status without diminishing design excellence.
+- **Score 3**: Functional placeholder, but feels somewhat stark or lacking in material polish.
+- **Score 1 (Failure)**: Empty dashed wireframe box, raw missing image icon, or frame decorated with fake technical specifications.
+
+---
+
+## 7. Test Suite 6: Mobile Typography & Viewport Composition Diagnostic
+
+### Objective:
+Evaluate layout balance and typographic readability on 320px and 375px compact viewports.
+
+### Diagnostic Checks:
+1. **Headline Line-Wrapping**: Title wraps cleanly into balanced lines (`text-wrap: balance`) without awkward single-word orphan rows.
+2. **Headline Viewport Budget**: Diagnostic check on 320px/375px screens: does the primary headline consume ≤ ~35%–40% of the initial mobile viewport height? (Flagged as diagnostic warning for review if exceeded).
+3. **Touch Usability**: All interactive buttons, drawer toggles, and form controls maintain ≥ 44×44px hit geometry with ≥ 8px touch separation.
+4. **Floating CTA Clearance**: Floating action pills maintain safe-area offset and do not obscure footer links, form fields, or active dialog/drawer content.
+
+### Rubric:
+- **Score 5**: Flawless mobile reading rhythm; headline scales gracefully; touch elements comfortable; zero occlusion.
+- **Score 3**: Legible and functional, but headline consumes substantial vertical space or exhibits minor line-wrapping tension.
+- **Score 1 (Failure)**: Clipped text, touch targets < 44px, horizontal overflow, or floating CTA blocking interactive controls.

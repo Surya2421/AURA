@@ -145,3 +145,109 @@ Verify that full-site implementation in Stage 6 did not degrade the approved fir
    - Verify layout, typography, and contrast remain 100% identical to the human-approved Stage 5 baseline.
 3. **Decision Log Audit**:
    - Confirm all decisions logged in `references/DESIGN-DECISION-LOG.md` have their `Approval Status` marked as `APPROVED` or `OVERRIDDEN`. No `PENDING` items may remain at project handoff.
+
+---
+
+## 6. Test Suite 6: Floating & Sticky UI Collision Benchmark
+
+### Objective:
+Ensure fixed or floating elements (e.g., mobile conversion pills or sticky action bars) never obscure interactive form fields, submit buttons, footer navigation, or active overlays.
+
+### Automated Evaluation Spec (Playwright / CDP Script):
+```javascript
+// tests/floating-collision.spec.js
+test('Floating action element must never obscure interactive controls or footer', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('http://localhost:3000', { waitUntil: 'networkidle' });
+
+  const floatingBar = page.locator('.aura-mobile-action-bar, .mobile-action-bar');
+  if (await floatingBar.isVisible()) {
+    // 1. Check at bottom of page (footer clearance)
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await page.waitForTimeout(100);
+
+    const barBox = await floatingBar.boundingBox();
+    const footerLinks = await page.locator('footer a, footer button').all();
+
+    for (const link of footerLinks) {
+      if (await link.isVisible()) {
+        const linkBox = await link.boundingBox();
+        if (linkBox && barBox) {
+          // Verify no bounding box collision
+          const collides = !(
+            barBox.x + barBox.width < linkBox.x ||
+            barBox.x > linkBox.x + linkBox.width ||
+            barBox.y + barBox.height < linkBox.y ||
+            barBox.y > linkBox.y + linkBox.height
+          );
+          expect(collides).toBe(false);
+        }
+      }
+    }
+
+    // 2. Check overlay concealment (drawer / modal)
+    await page.evaluate(() => document.body.classList.add('drawer-open'));
+    await page.waitForTimeout(100);
+    const opacity = await floatingBar.evaluate(el => window.getComputedStyle(el).opacity);
+    const visibility = await floatingBar.evaluate(el => window.getComputedStyle(el).visibility);
+    expect(opacity === '0' || visibility === 'hidden').toBe(true);
+  }
+});
+```
+
+### Reproducible Manual Verification:
+1. Open mobile viewport (375px) in Chrome DevTools.
+2. Scroll to bottom of the page. Verify at least 16px clearance between floating pill and the closest footer link.
+3. Open mobile menu drawer. Verify floating action pill completely hides and does not bleed through drawer items.
+4. Open any `<dialog>` modal. Verify floating action pill is concealed while dialog is active.
+
+---
+
+## 7. Test Suite 7: Content Authenticity & Pseudo-Metadata Scanner
+
+### Objective:
+Detect unbracketed suspicious technical specs, unverified camera/exposure metadata, fake coordinates, or fabricated claims before human review.
+
+### Automated Scanner Script (`scripts/audit-content-authenticity.mjs`):
+```javascript
+// Scan DOM text for suspicious unbracketed techno-metadata
+export function scanAuthenticity(domString) {
+  // Strip content inside explicit brackets [...] first so declared placeholders are not falsely flagged
+  const unbracketedText = domString.replace(/\[[\s\S]*?\]/g, '');
+
+  const SUSPICIOUS_PATTERNS = [
+    { name: 'Unbracketed Focal Length / Lens', regex: /\b\d{2,3}mm\s+(?:tilt-shift|f\/\d|lens)\b/i },
+    { name: 'Unbracketed Aperture / Shutter', regex: /\bf\/\d+(?:\.\d+)?\s+@\s+\d+\/\d+s?\b/i },
+    { name: 'Unbracketed ISO Spec', regex: /\bISO\s*\d{2,5}\b/i },
+    { name: 'Unbracketed Coordinates', regex: /\b(?:LAT|LON|LATITUDE|LONGITUDE)\s*:\s*[\d.]+/i },
+    { name: 'Decorative Plate Index', regex: /\bPLATE\s*(?:NO\.?)?\s*\d{2,3}\b/i }
+  ];
+
+  const warnings = [];
+  for (const pat of SUSPICIOUS_PATTERNS) {
+    const matches = unbracketedText.match(pat.regex);
+    if (matches) {
+      warnings.push({ pattern: pat.name, match: matches[0] });
+    }
+  }
+  return warnings;
+}
+```
+
+### Disposition Rule:
+- Any regex hit generates an **Authenticity Warning**.
+- The auditor must verify whether the flagged item corresponds to a verified client input in `references/DESIGN-DECISION-LOG.md`.
+- If unverified and unbracketed, it constitutes a **MANDATORY HARD GATE FAILURE** requiring immediate removal or bracketed placeholder replacement (`[SPECIFICATION PENDING]`).
+
+---
+
+## 8. Test Suite 8: Decision-Log Completeness & Stage-Gate Audit
+
+### Objective:
+Verify that all meaningful stage transitions, layout choices, and user approvals have recorded entries in `references/DESIGN-DECISION-LOG.md`.
+
+### Verification Checklist:
+1. **Stage Traceability**: Every completed pipeline stage (1 through current) has at least one recorded entry.
+2. **Approval Verification**: Stage 6 cannot exist without an `APPROVED` (or conditional progression) record for Stage 5.
+3. **No Unresolved Proposals at Handoff**: No `PENDING` proposals remain upon Stage 9 delivery.
+4. **Log Hygiene**: Routine implementation micro-steps (e.g. standard CSS utility class, minor 2px spacing tweak) are not cluttering the log.

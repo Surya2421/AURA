@@ -16,13 +16,16 @@ The `visual-acceptance-reviewer` is the optical auditor of AURA. Code that passe
    - `[MODE: LOCAL_BROWSER_INSPECTION]`: Developer or agent visually observed the page rendering in a live browser window.
    - `[MODE: STATIC_CODE_OPTICAL_AUDIT (FALLBACK)]`: Headless browser tools were unavailable; optical properties were verified purely through static CSS/DOM analysis.
 2. **Never Falsify Visual Claims**: Never state "The layout looks visually balanced and polished" unless visual evidence was actually generated or observed.
-3. **Multi-Viewport Requirement**: Visual inspection must cover at least three standard viewports: Mobile (`375px`), Tablet (`768px`), and Desktop (`1440px`).
+3. **Mandatory Screenshot Inspection**: Whenever headless browser tools or capture scripts exist, the reviewer must inspect rendered screenshots rather than relying purely on source code analysis.
+4. **Separate Technical Metrics from Aesthetic Judgments**: Clearly distinguish programmatic facts (0px overflow, measured contrast ratios, touch target sizes) from human aesthetic evaluations (distinctiveness, emotional tone).
+5. **Zero Self-Approval**: The visual reviewer identifies defects and evaluates rubrics, but NEVER approves designs on behalf of the human reviewer.
+6. **Multi-Viewport Requirement**: Visual inspection must cover at least four canonical viewports: Compact Mobile (`320px`), Standard Mobile (`375px`), Tablet (`768px`), and Desktop (`1440px`).
 
 ---
 
 ## 2. Visual Defect Detection Matrix
 
-When reviewing screenshots or renderings, the auditor actively checks for seven categories of visual defects:
+When reviewing screenshots or renderings, the auditor actively checks for ten categories of visual defects:
 
 | Defect Category | What to Look For | Pass Criteria |
 | :--- | :--- | :--- |
@@ -33,6 +36,9 @@ When reviewing screenshots or renderings, the auditor actively checks for seven 
 | **5. Card / Grid Misalignment** | Adjacent cards in a row having mismatched heights, misaligned CTA buttons, or irregular image aspect ratios. | Grid items align to consistent baseline; cards use flex column with `margin-top: auto` on CTAs. |
 | **6. Micro-Contrast Optical Loss** | Subtle gray text on dark gray cards becoming unreadable in ambient light, or borders vanishing against the background. | Contrast meets WCAG AA standards with crisp, visible 1px borders on surfaces. |
 | **7. Interactive State Clarity** | Hover states that cause layout jumps, missing focus indicators, or click states that lack tactile feedback. | Smooth transitions (`transform`, `opacity`), zero layout shift on hover, high-visibility focus ring. |
+| **8. Floating UI Occlusion** | Fixed conversion bars or floating pills covering footer links, copyright text, form fields, or modal dialogs. | Adequate bottom page clearance; floating pill concealed when mobile drawer or `<dialog>` is active. |
+| **9. Placeholder Dignity & Error Appearance** | Media placeholders appearing as raw empty wireframe boxes, broken image icons, or covered in cosmetic CAD crosshairs. | Intentional holding strategy; aspect ratio preserved; harmonious background tone; clean bracketed status tag. |
+| **10. Mobile Headline Viewport Crowding** | Primary headline consuming > 35%–40% of initial mobile viewport height on 320px/375px, or wrapping into awkward single words. | Fluid clamp scales comfortably; line-height balanced; key context visible without excessive scroll. |
 
 ---
 
@@ -98,30 +104,36 @@ When browser automation cannot be executed:
 
 ## 2. Multi-Viewport Inspection Findings
 
-### Mobile Viewport (375px)
+### Compact Mobile Viewport (320px)
 - **Status**: `[PASSED | DEFECTS_DETECTED]`
-- **Edge Margins**: 16px lateral padding maintained.
-- **Header & Navigation**: Collapsed into accessible drawer; brand badge legible.
-- **Typography & Hero**: Fluid clamp scaling correctly down to 2.25rem; no clipping.
-- **Horizontal Overflow**: None detected.
+- **Headline Wrapping & Ratio**: Headline wraps cleanly; consumes ≤ 35% viewport height; no single-word lines.
+- **Horizontal Overflow**: None detected (0px).
+- **Touch Targets**: Minimum 44×44px hit geometry verified.
+
+### Standard Mobile Viewport (375px)
+- **Status**: `[PASSED | DEFECTS_DETECTED]`
+- **Edge Margins**: Safe margin (16px–20px) maintained.
+- **Navigation & Drawer**: Collapsed into accessible drawer; brand badge legible; zero collision with floating action pill.
+- **Floating UI Occlusion**: Floating action pill maintains clearance above footer; auto-conceals when drawer or dialog is active.
 
 ### Tablet Viewport (768px)
 - **Status**: `[PASSED | DEFECTS_DETECTED]`
-- **Grid Layout**: 2-column asymmetric arrangement renders with even gutters.
-- **Spacing**: Section breathing room measured at 64px.
+- **Grid Layout**: Asymmetric arrangement renders with even gutters.
+- **Spacing**: Section breathing room measured at 64px–80px.
 
 ### Desktop Viewport (1440px)
 - **Status**: `[PASSED | DEFECTS_DETECTED]`
 - **Max Container Constraint**: Bounded at 1240px; centered in viewport.
-- **Visual Balance**: Asymmetric 60/40 hero balance creates strong focal tension without clutter.
-- **Surface Elevation**: Subtle border luminescence (8% white) cleanly separates cards from canvas.
+- **Visual Balance**: Asymmetric hero balance creates strong focal tension without clutter.
+- **Surface Elevation**: Subtle border luminescence cleanly separates cards from canvas.
 
-## 3. Optical & Typography Audit
-- **Typographic Measure**: Maximum line length constrained to 62ch on desktop body text.
-- **Heading Line Breaks**: Balanced without solitary orphan words.
-- **Focus Rings**: Tested visible on tab navigation across all interactive targets.
+## 3. Optical, Asset Dignity & Typography Audit
+- **Typographic Measure**: Line length constrained to 45–65ch on body text.
+- **Heading Line Breaks**: Balanced (`text-wrap: balance`) without orphan words.
+- **Asset-Absent & Placeholder Dignity**: Holding strategy verified deliberate; locked aspect-ratio; clean bracketed status badge; zero cosmetic CAD techno-chaff.
+- **Focus Rings**: High-contrast outline visible on tab navigation across all interactive targets.
 
-## 4. Visual Defects & Polish Items
+## 4. Visual Defects, Polish Items & Diagnostic Warnings
 *(List any optical flaws found, their screenshot reference, and remediation steps)*
 - None. First Slice meets visual acceptance standards for human presentation.
 ```
